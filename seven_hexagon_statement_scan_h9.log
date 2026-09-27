@@ -1,0 +1,6 @@
+======================================================================
+Statement scan: polyhexes with 7..9 cells
+======================================================================
+  h=7: polyhexes=333    without an exactly confirmed seven-cell obstruction: 0
+  h=8: polyhexes=1448   without an exactly confirmed seven-cell obstruction: 0
+  h=9: polyhexes=6572   without an exactly confirmed seven-cell obstruction: 0

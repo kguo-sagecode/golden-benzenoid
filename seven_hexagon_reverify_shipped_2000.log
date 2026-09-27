@@ -1,0 +1,41 @@
+==========================================================================
+INDEPENDENT RE-VERIFICATION OF THE SEVEN-HEXAGON CERTIFICATE
+==========================================================================
+A. structural
+   W7 regenerated independently: 85 cells  OK
+   rooted 7-cell cores regenerated: 3652  OK
+   patterns parsed: 22009
+B. pattern certificates (recomputed independently)
+   ... 0/22009
+   ... 5000/22009
+   ... 10000/22009
+   ... 15000/22009
+   ... 20000/22009
+   patterns with a valid negative certificate: 22009 / 22009
+C. covering DAG
+   nodes=345554 roots=3652
+   complete case split verified; recursive visits=795016 leaves=446360  OK
+D. end-to-end spot checks against ground truth (exact Q(sqrt5))
+   ... 100/2000 spot checks, failures=0
+   ... 200/2000 spot checks, failures=0
+   ... 300/2000 spot checks, failures=0
+   ... 400/2000 spot checks, failures=0
+   ... 500/2000 spot checks, failures=0
+   ... 600/2000 spot checks, failures=0
+   ... 700/2000 spot checks, failures=0
+   ... 800/2000 spot checks, failures=0
+   ... 900/2000 spot checks, failures=0
+   ... 1000/2000 spot checks, failures=0
+   ... 1100/2000 spot checks, failures=0
+   ... 1200/2000 spot checks, failures=0
+   ... 1300/2000 spot checks, failures=0
+   ... 1400/2000 spot checks, failures=0
+   ... 1500/2000 spot checks, failures=0
+   ... 1600/2000 spot checks, failures=0
+   ... 1700/2000 spot checks, failures=0
+   ... 1800/2000 spot checks, failures=0
+   ... 1900/2000 spot checks, failures=0
+   ... 2000/2000 spot checks, failures=0
+   spot checks: 2000 run, 0 disagreements with ground truth
+
+VERDICT: ALL CHECKS PASSED

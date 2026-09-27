@@ -1,0 +1,11 @@
+# LaTeX build files (the verifier transcripts *.log are deposited, so only the paper's log is ignored)
+golden-benzenoid.aux
+golden-benzenoid.log
+golden-benzenoid.out
+golden-benzenoid.synctex.gz
+golden-benzenoid.fdb_latexmk
+golden-benzenoid.fls
+# build products
+seven_hexagon_exact_verify
+__pycache__/
+.DS_Store

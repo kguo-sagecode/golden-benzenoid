@@ -1,0 +1,344 @@
+SMALL_POLYHEX_WITNESSES_V1
+#
+# Integer certificates for the polyhexes with at most six hexagons.
+#
+# There are 116 such polyhexes up to translation and the dihedral symmetries
+# of the tiling, with 1, 1, 3, 7, 22, 82 of them on 1, ..., 6 cells; the ring
+# of six cells around a hole is amongst them.  Exactly three lie in the
+# golden gap class, that is, have no adjacency eigenvalue in the open
+# interval (-theta, theta) where theta = (sqrt5 - 1)/2 = 1/phi.  This file
+# records, for each of the other 113, an integer vector y supported on one
+# colour class which certifies that its graph does have an eigenvalue there,
+# and for each of the three, the data of a characteristic-polynomial
+# certificate.  The three are benzene, naphthalene and triphenylene, which
+# agrees with the survivors reported by the shipped C++ verifier in
+# seven_hexagon_verification_fresh.log, namely h=1 (0,0); h=2 (0,0)(0,1);
+# h=4 (0,1)(1,1)(1,2)(2,0).
+#
+# The test.  Let X be the graph of the polyhex, with adjacency matrix A, and
+# let y be an integer vector supported on one colour class.  Since
+# theta^2 = 2 - phi,
+#
+#     y^T (A^2 - theta^2 I) y  =  y^T (A^2 - 2I) y + phi y^T y
+#                             =  phi N - M,
+#
+# where N = y^T y > 0 and M = -y^T (A^2 - 2I) y are integers.  Hence
+#
+#     y^T (A^2 - theta^2 I) y < 0
+#        <=>  phi N < M
+#        <=>  (1 + sqrt5) N < 2M
+#        <=>  sqrt5 N < 2M - N
+#        <=>  2M - N > 0  and  5 N^2 < (2M - N)^2,
+#
+# the last step because N > 0, so the left side of the previous line is
+# positive and squaring is reversible exactly when the right side is
+# positive too.  These are two strict inequalities between integers.  Since
+# A^2 is block diagonal with respect to the two colour classes, if
+# A^2 - theta^2 I fails to be positive semidefinite then one of the two
+# colour blocks does, so a single-colour witness always exists.  No
+# relaxation is involved: the graph is fully known, so M is exact.
+#
+# Conventions.  The cell (q, r) in axial coordinates has centre (2q+r, 3r)
+# and vertices at the six offsets (1,1), (0,2), (-1,1), (-1,-1), (0,-2),
+# (1,-1).  Two cells are adjacent when they differ by one of (1,0), (-1,0),
+# (0,1), (0,-1), (1,-1), (-1,1).  The colour of a vertex (x, y) is y mod 3,
+# which takes only the values 1 and 2.  Each polyhex is listed by the
+# lexicographically least of its twelve dihedral images, each translated so
+# that the least q and the least r are both zero.  The 116 records appear in
+# increasing number of cells and then in increasing lexicographic order.
+#
+# Record format.
+#
+#   POLYHEX id h n m q1 r1 ... qh rh
+#       polyhex number id, with h cells, whose graph has n vertices and m
+#       edges, and whose cells are (q1, r1), ..., (qh, rh).
+#
+#   WITNESS colour k x1 y1 c1 ... xk yk ck N M
+#       the previous polyhex is not in the golden gap class.  The witness y
+#       is supported on the k distinct vertices (xi, yi), all of the stated
+#       colour, with y(xi, yi) = ci nonzero, and N = y^T y,
+#       M = -y^T (A^2 - 2I) y.  Then 2M - N > 0 and 5N^2 < (2M - N)^2.
+#
+#   MEMBER name
+#       the previous polyhex lies in the golden gap class.
+#
+#   MEMBERCERT name n c0 c1 ... cn
+#       the characteristic polynomial of the named member, on n vertices,
+#       by ascending coefficients.
+#
+#   MEMBERFACTOR name mult d c0 ... cd
+#       an irreducible factor over Z, of degree d and multiplicity mult, by
+#       ascending coefficients; the product of the factors, with
+#       multiplicity, is the characteristic polynomial.
+#
+#   MEMBERMINROOT name i hnum hden
+#       factor number i (counting from zero in the order listed) is the one
+#       carrying the smallest positive root, and that root is the unique
+#       root of that factor in the interval (0, hnum/hden].
+#
+# Summary lines.  MAXENTRY, MAXSUPPORT, MAXN and MAXM are the largest
+# |y(v)|, the largest number of nonzero entries, and the largest N and M over
+# the 113 witnesses; MAXINT is the largest integer that occurs in any of the
+# comparisons, namely the larger of (2M - N)^2 and 5N^2.
+#
+COUNTS 1 1 3 7 22 82
+TOTAL 116
+MEMBERS 3
+WITNESSED 113
+MAXENTRY 4
+MAXSUPPORT 11
+MAXN 50
+MAXM 81
+MAXINT 12544
+POLYHEX 0 1 6 6 0 0
+MEMBER benzene
+POLYHEX 1 2 10 11 0 0 0 1
+MEMBER naphthalene
+POLYHEX 2 3 14 16 0 0 0 1 0 2
+WITNESS 1 5 -1 1 1 0 4 -2 1 7 1 2 4 1 3 7 -1 8 13
+POLYHEX 3 3 13 15 0 0 0 1 1 0
+WITNESS 1 6 -1 1 1 0 -2 -1 0 4 -1 2 -2 1 2 4 1 3 1 -1 6 12
+POLYHEX 4 3 14 16 0 0 0 1 1 1
+WITNESS 1 6 -1 1 4 0 -2 -3 0 4 -4 1 1 1 2 4 2 3 1 -2 50 81
+POLYHEX 5 4 18 21 0 0 0 1 0 2 0 3
+WITNESS 1 6 -1 1 -1 0 -2 1 0 4 1 1 7 -1 2 10 1 4 10 -1 6 10
+POLYHEX 6 4 17 20 0 0 0 1 0 2 1 0
+WITNESS 1 6 -1 1 1 0 -2 -1 0 4 -1 1 7 1 2 -2 1 3 7 -1 6 10
+POLYHEX 7 4 18 21 0 0 0 1 0 2 1 2
+WITNESS 1 5 -1 1 -1 0 -2 1 0 4 2 1 1 -1 1 7 -1 8 13
+POLYHEX 8 4 16 19 0 0 0 1 1 0 1 1
+WITNESS 1 6 -1 1 1 0 -2 -1 0 4 -1 2 -2 1 2 4 1 3 1 -1 6 10
+POLYHEX 9 4 18 21 0 0 0 1 1 1 1 2
+WITNESS 1 8 -1 1 -1 0 -2 1 0 4 2 1 1 -1 2 4 -1 3 1 1 3 7 1 5 7 -1 11 18
+POLYHEX 10 4 18 21 0 0 0 1 1 1 2 0
+WITNESS 2 7 -1 -1 -1 1 -1 2 1 5 1 2 2 -2 3 -1 2 3 5 1 5 -1 -1 16 26
+POLYHEX 11 4 18 21 0 1 1 1 1 2 2 0
+MEMBER triphenylene
+POLYHEX 12 5 22 26 0 0 0 1 0 2 0 3 0 4
+WITNESS 1 6 -1 1 1 0 4 -1 1 7 1 2 10 -1 3 13 1 5 13 -1 6 10
+POLYHEX 13 5 21 25 0 0 0 1 0 2 0 3 1 0
+WITNESS 1 6 -1 1 -1 0 -2 1 0 4 1 1 7 -1 2 10 1 4 10 -1 6 10
+POLYHEX 14 5 21 25 0 0 0 1 0 2 0 3 1 1
+WITNESS 1 6 -1 1 -1 0 -2 1 0 4 1 1 7 -1 2 10 1 4 10 -1 6 10
+POLYHEX 15 5 22 26 0 0 0 1 0 2 0 3 1 3
+WITNESS 2 8 -1 -1 1 1 -1 -1 2 2 1 2 8 1 3 5 -1 3 11 -1 5 11 1 6 8 -1 8 13
+POLYHEX 16 5 19 23 0 0 0 1 0 2 1 0 1 1
+WITNESS 1 6 -1 1 -1 0 -2 1 0 4 1 1 7 -1 3 7 1 4 4 -1 6 10
+POLYHEX 17 5 21 25 0 0 0 1 0 2 1 0 1 2
+WITNESS 1 6 -1 1 1 0 -2 -1 0 4 -1 1 7 1 2 -2 1 3 1 -1 6 10
+POLYHEX 18 5 21 25 0 0 0 1 0 2 1 0 2 0
+WITNESS 1 6 -1 1 -1 0 -2 1 0 4 1 2 -2 -1 4 -2 1 5 1 -1 6 10
+POLYHEX 19 5 20 24 0 0 0 1 0 2 1 1 1 2
+WITNESS 2 6 1 5 1 2 2 -1 2 8 -1 4 2 1 4 8 1 5 5 -1 6 10
+POLYHEX 20 5 21 25 0 0 0 1 0 2 1 1 2 1
+WITNESS 1 6 0 4 1 1 1 -1 1 7 -1 3 1 1 3 7 1 4 4 -1 6 10
+POLYHEX 21 5 22 26 0 0 0 1 0 2 1 2 1 3
+WITNESS 1 8 -1 1 1 0 -2 -1 0 4 -1 1 7 1 3 7 -1 4 4 1 4 10 1 6 10 -1 8 13
+POLYHEX 22 5 22 26 0 0 0 1 0 2 1 2 2 1
+WITNESS 1 8 -1 1 1 0 -2 -1 0 4 -1 1 7 1 3 7 -1 5 1 1 5 7 1 6 4 -1 8 13
+POLYHEX 23 5 22 26 0 0 0 1 0 2 1 2 2 2
+WITNESS 1 8 -1 1 -1 0 -2 1 0 4 1 1 7 -1 3 7 1 4 4 -1 6 4 1 7 7 -1 8 13
+POLYHEX 24 5 22 26 0 0 0 1 0 3 1 1 1 2
+WITNESS 1 10 -1 1 -2 0 -2 2 0 4 2 1 1 -1 2 4 -1 2 10 -1 3 1 1 3 7 1 4 10 1 5 7 -1 19 31
+POLYHEX 25 5 22 26 0 0 0 1 1 1 1 2 2 0
+WITNESS 2 8 -1 -1 -1 1 -1 2 1 5 1 2 2 -2 3 -1 1 4 2 1 5 -1 -1 5 5 -1 14 23
+POLYHEX 26 5 21 25 0 0 0 1 1 1 1 2 2 1
+WITNESS 1 6 2 4 1 3 1 -1 3 7 -1 5 1 1 5 7 1 6 4 -1 6 11
+POLYHEX 27 5 22 26 0 0 0 1 1 1 1 2 2 2
+WITNESS 1 8 -1 1 -1 0 -2 1 0 4 2 1 1 -1 2 4 -1 3 1 2 3 7 1 4 4 -1 14 23
+POLYHEX 28 5 22 26 0 0 0 1 1 1 2 1 2 2
+WITNESS 1 7 -1 1 1 0 -2 -1 0 4 -2 1 1 1 2 4 1 3 1 -2 5 1 1 13 22
+POLYHEX 29 5 22 26 0 0 0 1 1 1 2 1 3 0
+WITNESS 1 8 -1 1 1 0 -2 -1 0 4 -2 1 1 1 2 4 1 3 1 -2 5 1 1 6 4 -1 14 23
+POLYHEX 30 5 20 24 0 1 0 2 1 0 1 1 2 1
+WITNESS 1 8 0 4 -1 1 1 1 1 7 1 3 1 -1 3 7 -1 4 4 1 5 1 1 6 4 -1 8 13
+POLYHEX 31 5 22 26 0 1 0 2 1 0 1 2 2 0
+WITNESS 1 9 1 1 1 1 7 1 2 -2 -2 2 4 -2 3 1 1 4 -2 1 4 4 2 5 1 -1 5 7 -1 18 30
+POLYHEX 32 5 20 24 0 1 0 2 1 1 2 0 2 1
+WITNESS 1 6 0 4 1 1 1 -1 1 7 -1 3 1 1 3 7 1 4 4 -1 6 10
+POLYHEX 33 5 22 26 0 1 1 1 1 2 1 3 2 0
+WITNESS 1 8 0 4 1 2 4 -1 3 1 1 3 7 2 4 -2 -1 4 4 -1 4 10 -2 6 10 1 14 23
+POLYHEX 34 6 26 31 0 0 0 1 0 2 0 3 0 4 0 5
+WITNESS 1 6 0 4 1 1 7 -1 2 10 1 3 13 -1 4 16 1 6 16 -1 6 10
+POLYHEX 35 6 25 30 0 0 0 1 0 2 0 3 0 4 1 0
+WITNESS 1 6 -1 1 1 0 4 -1 1 7 1 2 10 -1 3 13 1 5 13 -1 6 10
+POLYHEX 36 6 25 30 0 0 0 1 0 2 0 3 0 4 1 1
+WITNESS 1 6 -1 1 1 0 4 -1 1 7 1 2 10 -1 3 13 1 5 13 -1 6 10
+POLYHEX 37 6 26 31 0 0 0 1 0 2 0 3 0 4 1 4
+WITNESS 1 6 -1 1 -1 0 -2 1 0 4 1 1 7 -1 2 10 1 3 13 -1 6 10
+POLYHEX 38 6 23 28 0 0 0 1 0 2 0 3 1 0 1 1
+WITNESS 1 6 -1 1 -1 0 -2 1 0 4 1 1 7 -1 2 10 1 4 10 -1 6 10
+POLYHEX 39 6 24 29 0 0 0 1 0 2 0 3 1 0 1 2
+WITNESS 1 6 -1 1 1 0 4 -1 1 7 1 2 10 -1 4 10 1 5 7 -1 6 10
+POLYHEX 40 6 25 30 0 0 0 1 0 2 0 3 1 0 1 3
+WITNESS 1 6 -1 1 1 0 -2 -1 0 4 -1 1 7 1 2 -2 1 3 1 -1 6 10
+POLYHEX 41 6 25 30 0 0 0 1 0 2 0 3 1 0 2 0
+WITNESS 1 6 -1 1 -1 0 -2 1 0 4 1 2 -2 -1 4 -2 1 5 1 -1 6 10
+POLYHEX 42 6 25 30 0 0 0 1 0 2 0 3 1 1 1 3
+WITNESS 1 6 0 4 1 1 1 -1 1 7 -1 3 1 1 3 7 1 4 4 -1 6 10
+POLYHEX 43 6 25 30 0 0 0 1 0 2 0 3 1 1 2 0
+WITNESS 1 6 -1 1 -1 0 -2 1 0 4 1 1 7 -1 2 10 1 4 10 -1 6 10
+POLYHEX 44 6 24 29 0 0 0 1 0 2 0 3 1 2 1 3
+WITNESS 2 6 2 8 1 3 5 -1 3 11 -1 5 5 1 5 11 1 6 8 -1 6 10
+POLYHEX 45 6 25 30 0 0 0 1 0 2 0 3 1 2 2 2
+WITNESS 1 6 1 7 1 2 4 -1 2 10 -1 4 4 1 4 10 1 5 7 -1 6 10
+POLYHEX 46 6 26 31 0 0 0 1 0 2 0 3 1 3 1 4
+WITNESS 1 8 -1 1 -1 0 -2 1 0 4 1 1 7 -1 2 10 1 4 10 -1 5 13 1 7 13 -1 8 13
+POLYHEX 47 6 26 31 0 0 0 1 0 2 0 3 1 3 2 2
+WITNESS 1 8 -1 1 -1 0 -2 1 0 4 1 1 7 -1 2 10 1 4 10 -1 6 10 1 7 7 -1 8 13
+POLYHEX 48 6 26 31 0 0 0 1 0 2 0 3 1 3 2 3
+WITNESS 1 8 -1 1 -1 0 -2 1 0 4 1 1 7 -1 3 7 1 5 7 -1 7 7 1 8 10 -1 8 13
+POLYHEX 49 6 26 31 0 0 0 1 0 2 0 4 1 2 1 3
+WITNESS 2 8 -1 -1 1 1 -1 -1 1 5 -1 2 2 2 2 8 1 3 5 -1 5 5 1 6 8 -1 11 18
+POLYHEX 50 6 22 27 0 0 0 1 0 2 1 0 1 1 1 2
+WITNESS 1 6 -1 1 1 0 -2 -1 0 4 -1 2 -2 1 2 4 1 3 1 -1 6 10
+POLYHEX 51 6 22 27 0 0 0 1 0 2 1 0 1 1 2 0
+WITNESS 1 6 -1 1 -1 0 -2 1 0 4 1 2 -2 -1 4 -2 1 5 1 -1 6 10
+POLYHEX 52 6 23 28 0 0 0 1 0 2 1 0 1 1 2 1
+WITNESS 1 6 -1 1 1 0 -2 -1 0 4 -1 1 7 1 2 -2 1 3 7 -1 6 10
+POLYHEX 53 6 25 30 0 0 0 1 0 2 1 0 1 2 1 3
+WITNESS 1 6 -1 1 1 0 -2 -1 0 4 -1 1 7 1 2 -2 1 3 1 -1 6 10
+POLYHEX 54 6 25 30 0 0 0 1 0 2 1 0 1 2 2 0
+WITNESS 1 6 -1 1 -1 0 -2 1 0 4 1 2 -2 -1 4 -2 1 5 1 -1 6 10
+POLYHEX 55 6 25 30 0 0 0 1 0 2 1 0 1 2 2 1
+WITNESS 1 6 -1 1 1 0 -2 -1 0 4 -1 1 7 1 2 -2 1 3 1 -1 6 10
+POLYHEX 56 6 25 30 0 0 0 1 0 2 1 0 1 2 2 2
+WITNESS 1 6 -1 1 1 0 -2 -1 0 4 -1 1 7 1 2 -2 1 3 1 -1 6 10
+POLYHEX 57 6 24 29 0 0 0 1 0 2 1 1 1 2 1 3
+WITNESS 1 8 0 4 -1 1 1 1 1 7 1 3 1 -1 3 7 -1 4 4 1 4 10 1 6 10 -1 8 13
+POLYHEX 58 6 24 29 0 0 0 1 0 2 1 1 1 2 2 0
+WITNESS 2 8 1 -1 1 1 5 1 2 2 -1 2 8 -1 4 2 1 4 8 1 5 -1 -1 5 5 -1 8 13
+POLYHEX 59 6 23 28 0 0 0 1 0 2 1 1 1 2 2 1
+WITNESS 1 6 2 4 1 3 1 -1 3 7 -1 5 1 1 5 7 1 6 4 -1 6 10
+POLYHEX 60 6 24 29 0 0 0 1 0 2 1 1 1 2 2 2
+WITNESS 1 8 0 4 1 1 1 -1 1 7 -1 3 1 1 3 7 1 4 4 -1 6 4 1 7 7 -1 8 13
+POLYHEX 61 6 24 29 0 0 0 1 0 2 1 1 2 0 2 1
+WITNESS 2 6 2 2 1 3 -1 -1 3 5 -1 5 -1 1 5 5 1 6 2 -1 6 10
+POLYHEX 62 6 25 30 0 0 0 1 0 2 1 1 2 0 3 0
+WITNESS 1 6 -1 1 -1 0 -2 1 0 4 1 1 7 -1 3 7 1 4 4 -1 6 10
+POLYHEX 63 6 25 30 0 0 0 1 0 2 1 1 2 1 2 2
+WITNESS 1 6 0 4 1 1 1 -1 1 7 -1 3 1 1 3 7 1 4 4 -1 6 10
+POLYHEX 64 6 25 30 0 0 0 1 0 2 1 1 2 1 3 0
+WITNESS 1 6 0 4 1 1 1 -1 1 7 -1 3 1 1 3 7 1 4 4 -1 6 10
+POLYHEX 65 6 25 30 0 0 0 1 0 2 1 1 2 1 3 1
+WITNESS 1 6 0 4 1 1 1 -1 1 7 -1 3 1 1 3 7 1 4 4 -1 6 10
+POLYHEX 66 6 26 31 0 0 0 1 0 2 1 2 1 3 1 4
+WITNESS 1 8 -1 1 -1 0 4 1 1 7 -1 3 7 1 4 4 -1 4 10 -1 5 13 1 7 13 -1 8 13
+POLYHEX 67 6 26 31 0 0 0 1 0 2 1 2 1 3 2 1
+WITNESS 1 8 -1 1 -1 0 -2 1 0 4 2 1 1 -1 1 7 -1 3 7 1 4 10 -1 6 10 1 11 18
+POLYHEX 68 6 25 30 0 0 0 1 0 2 1 2 1 3 2 2
+WITNESS 1 6 3 7 1 4 4 -1 4 10 -1 6 4 1 6 10 1 7 7 -1 6 11
+POLYHEX 69 6 26 31 0 0 0 1 0 2 1 2 1 3 2 3
+WITNESS 1 8 -1 1 -1 0 -2 1 0 4 2 1 1 -1 1 7 -1 3 7 1 4 4 -1 4 10 -1 11 18
+POLYHEX 70 6 26 31 0 0 0 1 0 2 1 2 2 0 2 1
+WITNESS 1 8 -1 1 1 0 -2 -1 0 4 -2 1 1 1 1 7 1 3 7 -1 5 7 1 6 4 -1 11 18
+POLYHEX 71 6 26 31 0 0 0 1 0 2 1 2 2 1 3 0
+WITNESS 1 8 -1 1 -1 0 -2 1 0 4 1 1 7 -1 3 7 1 5 7 -1 6 4 1 7 1 -1 8 13
+POLYHEX 72 6 26 31 0 0 0 1 0 2 1 2 2 1 3 1
+WITNESS 1 6 -1 1 -2 0 -2 1 0 4 2 1 7 -1 2 4 -1 3 7 1 12 20
+POLYHEX 73 6 26 31 0 0 0 1 0 2 1 2 2 2 2 3
+WITNESS 1 8 -1 1 1 0 -2 -1 0 4 -2 1 1 1 1 7 1 3 7 -1 4 4 1 6 4 -1 11 18
+POLYHEX 74 6 26 31 0 0 0 1 0 2 1 2 2 2 3 1
+WITNESS 1 6 -1 1 -1 0 -2 1 0 4 2 1 1 -1 1 7 -2 3 7 1 12 20
+POLYHEX 75 6 26 31 0 0 0 1 0 3 0 4 1 1 1 2
+WITNESS 1 10 -1 1 -1 0 -2 1 0 4 1 2 4 -1 2 10 -2 3 1 1 3 7 1 3 13 2 5 7 -1 5 13 -1 16 26
+POLYHEX 76 6 24 29 0 0 0 1 0 3 1 0 1 1 1 2
+WITNESS 1 6 -1 1 1 0 -2 -1 0 4 -1 2 -2 1 2 4 1 3 1 -1 6 10
+POLYHEX 77 6 26 31 0 0 0 1 0 3 1 1 1 2 2 0
+WITNESS 1 11 -1 1 1 0 -2 -1 0 4 -1 2 4 1 2 10 1 3 7 -1 4 -2 -1 4 4 -1 4 10 -1 5 1 1 5 7 2 14 23
+POLYHEX 78 6 26 31 0 0 0 1 0 3 1 1 1 2 2 2
+WITNESS 1 10 -1 1 1 0 -2 -1 0 4 -2 1 1 1 2 4 1 2 10 1 3 1 -2 3 7 -1 4 4 1 6 4 -1 16 26
+POLYHEX 79 6 26 31 0 0 0 1 0 4 1 1 1 2 1 3
+WITNESS 2 8 1 -1 -1 2 2 1 4 2 -2 4 8 -1 4 14 -1 5 5 2 5 11 1 6 8 -1 14 23
+POLYHEX 80 6 23 28 0 0 0 1 1 0 1 1 1 2 2 1
+WITNESS 1 6 2 4 1 3 1 -1 3 7 -1 5 1 1 5 7 1 6 4 -1 6 10
+POLYHEX 81 6 24 29 0 0 0 1 1 0 1 1 1 2 2 2
+WITNESS 1 6 -1 1 1 0 -2 -1 0 4 -1 2 -2 1 2 4 1 3 1 -1 6 10
+POLYHEX 82 6 26 31 0 0 0 1 1 1 1 2 1 3 2 0
+WITNESS 1 8 -1 1 1 0 4 -1 2 4 1 3 1 -1 3 7 -2 4 4 1 4 10 2 6 10 -1 14 23
+POLYHEX 83 6 25 30 0 0 0 1 1 1 1 2 1 3 2 1
+WITNESS 1 6 2 4 1 3 1 -1 3 7 -1 5 1 1 5 7 1 6 4 -1 6 10
+POLYHEX 84 6 25 30 0 0 0 1 1 1 1 2 1 3 2 2
+WITNESS 1 6 3 7 1 4 4 -1 4 10 -1 6 4 1 6 10 1 7 7 -1 6 11
+POLYHEX 85 6 26 31 0 0 0 1 1 1 1 2 1 3 2 3
+WITNESS 2 7 4 2 -1 4 8 -1 5 5 2 5 11 2 6 8 -1 7 11 -1 8 8 1 13 22
+POLYHEX 86 6 24 29 0 0 0 1 1 1 1 2 2 0 2 1
+WITNESS 1 8 -1 1 1 0 4 -1 2 4 1 3 1 -1 3 7 -1 5 1 1 5 7 1 6 4 -1 8 13
+POLYHEX 87 6 26 31 0 0 0 1 1 1 1 2 2 0 2 2
+WITNESS 1 10 -1 1 -1 0 -2 1 0 4 1 2 4 -1 4 -2 1 4 4 2 5 1 -2 5 7 -1 6 4 -1 7 7 1 16 26
+POLYHEX 88 6 25 30 0 0 0 1 1 1 1 2 2 1 3 1
+WITNESS 1 6 2 4 1 3 1 -1 3 7 -1 5 1 1 5 7 1 6 4 -1 6 10
+POLYHEX 89 6 26 31 0 0 0 1 1 1 1 2 2 2 2 3
+WITNESS 2 8 3 5 -1 4 2 1 4 8 2 5 5 -1 6 8 -1 7 5 2 7 11 1 8 8 -1 14 23
+POLYHEX 90 6 26 31 0 0 0 1 1 1 1 2 2 2 3 1
+WITNESS 1 11 -1 1 -1 0 -2 1 0 4 2 1 1 -1 2 4 -1 3 1 1 3 7 1 5 7 -1 7 1 1 7 7 1 8 4 -1 14 23
+POLYHEX 91 6 26 31 0 0 0 1 1 1 1 3 2 1 2 2
+WITNESS 1 7 -1 1 1 0 -2 -1 0 4 -2 1 1 1 2 4 1 3 1 -2 5 1 1 13 22
+POLYHEX 92 6 26 31 0 0 0 1 1 1 2 0 3 0 3 1
+WITNESS 2 10 -1 -1 1 1 -1 -2 1 5 -1 2 2 2 3 -1 -1 4 2 -1 5 -1 1 7 -1 -1 7 5 -1 8 2 1 16 26
+POLYHEX 93 6 26 31 0 0 0 1 1 1 2 1 2 2 3 0
+WITNESS 1 10 -1 1 -1 0 -2 1 0 4 2 1 1 -1 2 4 -1 3 1 2 5 1 -1 5 7 -1 6 -2 1 6 4 1 16 26
+POLYHEX 94 6 25 30 0 0 0 1 1 1 2 1 2 2 3 1
+WITNESS 1 6 3 1 1 5 1 -1 5 7 -1 7 1 1 7 7 1 8 4 -1 6 10
+POLYHEX 95 6 26 31 0 0 0 1 1 1 2 1 3 1 3 2
+WITNESS 1 6 0 4 -1 1 1 1 2 4 1 3 1 -2 5 1 2 7 1 -1 12 20
+POLYHEX 96 6 26 31 0 0 0 1 1 1 2 1 3 1 4 0
+WITNESS 2 6 1 5 1 3 5 -2 5 5 2 6 2 -1 7 5 -1 8 2 1 12 20
+POLYHEX 97 6 25 30 0 1 0 2 0 3 1 0 1 2 2 2
+WITNESS 1 6 1 7 1 2 4 -1 2 10 -1 4 4 1 4 10 1 5 7 -1 6 10
+POLYHEX 98 6 26 31 0 1 0 2 0 3 1 0 1 3 2 0
+WITNESS 1 8 0 4 1 1 1 -1 1 7 -2 2 -2 1 2 4 1 2 10 2 4 -2 -1 4 10 -1 14 23
+POLYHEX 99 6 22 27 0 1 0 2 1 0 1 1 1 2 2 0
+WITNESS 1 8 1 1 1 1 7 1 2 -2 -1 2 4 -1 4 -2 1 4 4 1 5 1 -1 5 7 -1 8 13
+POLYHEX 100 6 24 29 0 1 0 2 1 0 1 1 2 1 3 1
+WITNESS 1 8 1 7 -1 2 -2 1 2 4 1 3 1 -1 4 4 -1 5 1 2 7 1 -2 8 4 1 14 23
+POLYHEX 101 6 26 31 0 1 0 2 1 0 1 2 1 3 2 0
+WITNESS 1 11 0 4 1 1 1 -1 1 7 -2 2 -2 1 2 4 1 3 7 1 4 -2 -1 4 4 -1 4 10 -1 5 1 1 6 10 1 14 23
+POLYHEX 102 6 26 31 0 1 0 2 1 0 1 2 1 3 2 1
+WITNESS 2 11 0 2 2 1 -1 -1 1 5 -1 2 2 -1 3 -1 1 3 5 2 4 2 -1 4 8 -1 5 5 -1 6 2 1 6 8 1 17 28
+POLYHEX 103 6 25 30 0 1 0 2 1 0 1 2 1 3 2 2
+WITNESS 1 6 3 7 1 4 4 -1 4 10 -1 6 4 1 6 10 1 7 7 -1 6 11
+POLYHEX 104 6 24 30 0 1 0 2 1 0 1 2 2 0 2 1
+WITNESS 1 9 1 1 -1 2 -2 1 2 4 1 3 7 -1 4 -2 -2 4 4 -1 5 1 2 5 7 2 6 4 -2 21 34
+POLYHEX 105 6 24 29 0 1 0 2 1 1 1 2 1 3 2 0
+WITNESS 1 8 0 4 -1 1 1 1 1 7 1 3 1 -1 3 7 -1 4 4 1 4 10 1 6 10 -1 8 13
+POLYHEX 106 6 24 29 0 1 0 2 1 1 2 0 2 1 3 1
+WITNESS 1 6 0 4 1 1 1 -1 1 7 -1 3 1 1 3 7 1 4 4 -1 6 10
+POLYHEX 107 6 25 30 0 1 0 2 1 1 2 1 2 2 3 0
+WITNESS 1 6 0 4 1 1 1 -1 1 7 -1 3 1 1 3 7 1 4 4 -1 6 11
+POLYHEX 108 6 24 29 0 1 0 2 1 1 2 1 3 0 3 1
+WITNESS 1 6 0 4 1 1 1 -1 1 7 -1 3 1 1 3 7 1 4 4 -1 6 11
+POLYHEX 109 6 26 31 0 1 0 2 1 2 1 3 2 0 2 1
+WITNESS 1 11 0 4 -1 1 1 1 1 7 2 2 4 -1 3 1 -1 3 7 -1 4 -2 1 4 4 1 4 10 1 6 4 -1 6 10 -1 14 23
+POLYHEX 110 6 26 31 0 1 0 2 1 2 1 3 2 1 3 0
+WITNESS 1 8 1 7 -1 3 7 1 4 4 -1 5 7 -1 6 -2 1 6 4 2 6 10 1 7 1 -2 14 23
+POLYHEX 111 6 26 31 0 1 0 3 1 1 1 2 2 0 2 2
+WITNESS 2 11 0 2 1 1 5 -1 2 2 -1 2 8 -1 3 -1 1 3 5 2 3 11 1 4 2 -1 4 8 -1 6 8 1 7 5 -1 14 23
+POLYHEX 112 6 26 31 0 1 1 1 1 2 1 3 1 4 2 0
+WITNESS 1 6 3 7 -2 4 4 1 4 10 2 5 13 -1 6 10 -1 7 13 1 12 20
+POLYHEX 113 6 25 30 0 1 1 1 1 2 1 3 2 1 3 0
+WITNESS 1 8 0 4 1 1 1 -1 3 1 1 3 7 1 4 4 -1 4 10 -1 6 4 1 7 1 -1 8 13
+POLYHEX 114 6 24 29 0 1 1 1 1 2 2 0 2 1 3 1
+WITNESS 1 10 0 4 1 1 1 -1 2 4 -1 3 1 1 3 7 2 5 1 -1 5 7 -2 6 4 1 7 1 1 8 4 -1 16 26
+POLYHEX 115 6 26 31 0 1 1 1 2 1 2 2 2 3 3 0
+WITNESS 1 11 0 4 1 1 1 -1 2 4 -1 3 1 2 5 1 -1 5 7 -1 6 -2 1 6 4 1 6 10 1 7 1 -1 8 10 -1 14 23
+MEMBERCERT benzene 6 -4 0 9 0 -6 0 1
+MEMBERFACTOR benzene 1 1 -2 1
+MEMBERFACTOR benzene 1 1 2 1
+MEMBERFACTOR benzene 2 1 -1 1
+MEMBERFACTOR benzene 2 1 1 1
+MEMBERMINROOT benzene 2 1 1
+MEMBERCERT naphthalene 10 -9 0 43 0 -65 0 41 0 -11 0 1
+MEMBERFACTOR naphthalene 1 1 -1 1
+MEMBERFACTOR naphthalene 1 1 1 1
+MEMBERFACTOR naphthalene 1 2 -3 -1 1
+MEMBERFACTOR naphthalene 1 2 -3 1 1
+MEMBERFACTOR naphthalene 1 2 -1 -1 1
+MEMBERFACTOR naphthalene 1 2 -1 1 1
+MEMBERMINROOT naphthalene 5 62 100
+MEMBERCERT triphenylene 18 -81 0 648 0 -2106 0 3627 0 -3645 0 2223 0 -825 0 180 0 -21 0 1
+MEMBERFACTOR triphenylene 1 3 3 0 -3 1
+MEMBERFACTOR triphenylene 1 3 -3 0 3 1
+MEMBERFACTOR triphenylene 2 6 -3 0 9 0 -6 0 1
+MEMBERMINROOT triphenylene 2 69 100
+END

@@ -1,0 +1,58 @@
+========================================================================
+VERIFYING small_polyhex_witnesses.txt
+========================================================================
+
+(a) polyhexes with at most six cells, regenerated independently
+    counts by number of cells: 1 1 3 7 22 82   total 116
+    polyhexes with a hole: 1   ((0, 1), (0, 2), (1, 0), (1, 2), (2, 0), (2, 1))
+    the 116 records of the file agree, in order, with the regenerated list
+
+(b) integer witnesses
+    113 witnesses checked by exact integer arithmetic
+    max |y(v)| = 4,  max support = 11,  max N = 50,  max M = 81
+    largest integer occurring in any comparison: 12544  (< 2^14)
+    distribution: 69 witnesses with max |y(v)| = 1, 43 witnesses with max |y(v)| = 2, 1 witnesses with max |y(v)| = 4
+    largest witness: cells (0,0) (0,1) (1,1), colour 1, N = 50, M = 81
+        y = y(-1,1)=4 y(0,-2)=-3 y(0,4)=-4 y(1,1)=1 y(2,4)=2 y(3,1)=-2
+    a priori bound.  The certificate declares support <= 11 and |y(v)| <= 4,
+      both checked above.  The graph is subcubic, so every row sum of A^2
+      is at most 9, whence N <= 11*4^2 = 176 and |M| <= (2+9)*11*4^2 = 1936;
+      every integer compared is then at most 16386304 < 2^24, far inside 64 bits.
+
+(c) the polyhexes in the golden gap class
+    benzene: cells (0,0), 6 vertices
+        both colour blocks of A^2 - theta^2 I are positive semidefinite (exact elimination over Q(sqrt5))
+        chi(x) = x^6-6x^4+9x^2-4
+               = (x-2)(x+2)(x-1)^2(x+1)^2
+        factor x-2                      roots in (-theta,theta): 0,   value at theta = phi -3
+        factor x+2                      roots in (-theta,theta): 0,   value at theta = phi +1
+        factor x-1                      roots in (-theta,theta): 0,   value at theta = phi -2
+        factor x+1                      roots in (-theta,theta): 0,   value at theta = phi
+        smallest positive root: the unique root of x-1 in (0, 1/1]; chi has no root at all in (0, theta], so that root exceeds theta
+    naphthalene: cells (0,0)(0,1), 10 vertices
+        both colour blocks of A^2 - theta^2 I are positive semidefinite (exact elimination over Q(sqrt5))
+        chi(x) = x^10-11x^8+41x^6-65x^4+43x^2-9
+               = (x-1)(x+1)(x^2-x-3)(x^2+x-3)(x^2-x-1)(x^2+x-1)
+        factor x-1                      roots in (-theta,theta): 0,   value at theta = phi -2
+        factor x+1                      roots in (-theta,theta): 0,   value at theta = phi
+        factor x^2-x-3                  roots in (-theta,theta): 0,   value at theta = -2 phi
+        factor x^2+x-3                  roots in (-theta,theta): 0,   value at theta = -2
+        factor x^2-x-1                  roots in (-theta,theta): 0,   value at theta = -2 phi +2
+        factor x^2+x-1                  roots in (-theta,theta): 0,   value at theta = 0
+        smallest positive root: the unique root of x^2+x-1 in (0, 62/100]; it equals theta exactly, and theta is the only root of chi in (0, theta]
+    triphenylene: cells (0,1)(1,1)(1,2)(2,0), 18 vertices
+        both colour blocks of A^2 - theta^2 I are positive semidefinite (exact elimination over Q(sqrt5))
+        chi(x) = x^18-21x^16+180x^14-825x^12+2223x^10-3645x^8+3627x^6-2106x^4+648x^2-81
+               = (x^3-3x^2+3)(x^3+3x^2-3)(x^6-6x^4+9x^2-3)^2
+        factor x^3-3x^2+3               roots in (-theta,theta): 0,   value at theta = 5 phi -6
+        factor x^3+3x^2-3               roots in (-theta,theta): 0,   value at theta = -phi
+        factor x^6-6x^4+9x^2-3          roots in (-theta,theta): 0,   value at theta = phi -2
+        smallest positive root: the unique root of x^6-6x^4+9x^2-3 in (0, 69/100]; chi has no root at all in (0, theta], so that root exceeds theta
+
+========================================================================
+VERDICT: all checks passed.  Of the 116 polyhexes with at most six cells,
+         113 carry a verified integer witness placing an eigenvalue in
+         (-theta, theta), and exactly 3 lie in the golden gap class:
+         benzene, naphthalene and triphenylene.  Every integer compared
+         is at most 12544, so 64-bit arithmetic suffices.
+========================================================================
