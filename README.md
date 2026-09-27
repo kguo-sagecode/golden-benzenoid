@@ -1,5 +1,7 @@
 # Naphthalene is the only golden benzenoid
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22996285.svg)](https://doi.org/10.5281/zenodo.22996285)
+
 Krystal Guo, Korteweg-de Vries Institute for Mathematics, University of Amsterdam
 (k.guo@uva.nl)
 
@@ -79,6 +81,13 @@ more intuitive proof. Claude was also used in editing the text of the manuscript
 
 [1] K. Guo, G. F. Royle, Cubic graphs with no eigenvalues in the interval (−1, 1),
 J. Combin. Theory Ser. B **176** (2026) 561–583.
+
+## Archive
+
+This repository is archived at Zenodo. The DOI
+[10.5281/zenodo.22996285](https://doi.org/10.5281/zenodo.22996285) always resolves to
+the latest version; version 1.0, released on 27 September 2026, is
+[10.5281/zenodo.22996286](https://doi.org/10.5281/zenodo.22996286).
 
 ## Licence
 
